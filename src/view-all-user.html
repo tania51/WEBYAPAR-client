@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap w/ Vite</title>
+    <script type="module" src="./js/main.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <script>
+
+        const some = fetch('http://localhost:3000/admin-info')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                const filterdWithoutAdmin = data.filter(aData => aData.role !== 'admin')
+                console.log(filterdWithoutAdmin);
+
+                const handleDoneClick = (id) => {
+                    console.log(id);
+                }
+
+                const userSingleData = filterdWithoutAdmin.map(singleUserInfo => `<tr>
+                <td>${singleUserInfo.userId}</td>
+                <td>${singleUserInfo.role}</td>
+                <td>
+                  <img src=${singleUserInfo.userImage} style="max-width: 1050; max-height: 50px;" alt=""></td>
+                <td>
+                <td>
+                    <button id="done-btn" onclick="${handleDoneClick(singleUserInfo._id)}"><span id="get-id">${singleUserInfo._id}</span>Done</button>
+
+                    </td>
+              </tr><span class='hide-coma'>,<span>`
+                )
+
+                document.getElementById('table-row').innerHTML = userSingleData;
+
+                const getId = document.getElementById('get-id')
+                console.log(getId);
+                document.getElementById('done-btn').addEventListener('click', function (event) {
+                    event.preventDefault();
+
+                })
+            })
+    </script>
+    <div class="container">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start pe-3 pt-3 pb-3">
+            <button type="submit" id="admin-login-btn" class="me-md-2 tab-btn2">Back</button>
+        </div>
+        <table>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>User Id</th>
+                        <th>Name</th>
+                        <th>Photo</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="table-row">
+
+                </tbody>
+            </table>
+        </table>
+    </div>
+
+
+
+
+
+    <!-- js file added -->
+    <!-- <script src="js/create-user-script.js"></script> -->
+</body>
+
+</html>
+
+
+
+
+
+
+<!-- // `${((userId) => {
+// const handleDoneClick = () => {
+// // Your function logic here
+// return `Done button clicked for user with ID: ${userId}`;
+// };
+
+// return handleDoneClick();
+// })(singleUserInfo._id)}`; -->

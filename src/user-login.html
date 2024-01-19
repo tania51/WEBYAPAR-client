@@ -11,25 +11,26 @@
 
 <body>
   <div class="mobile-display height-full d-flex w-100 gap-5">
+    
     <!-- logo area -->
     <div class="w-50 img-bg d-flex align-content-center flex-wrap">
       <img src="./assets/logo.png" class="img-fluid" alt="Logo">
     </div>
 
-    <!-- admin form area -->
+    <!-- user form area -->
     <div class="w-50 px-5 d-flex align-content-center flex-wrap">
       <div>
-        <p class="text-center fs-1 fw-medium">Admin Login</p>
+        <p class="text-center fs-1 fw-medium">User Login</p>
       <form>
         <fieldset>
           <div class="mb-3">
-            <input type="text" id="admin-id" class="form-control" placeholder="User ID">
+            <input type="text" id="user-id" class="form-control" placeholder="User ID">
           </div>
           <div class="mb-3">
-            <input type="text" id="admin-pass" class="form-control" placeholder="Password">
+            <input type="text" id="user-pass" class="form-control" placeholder="Password">
           </div>
           <div class="d-grid gap-2">
-            <button type="submit" id="admin-login-btn" class="tab-btn">Login</button>
+            <button type="submit" id="admin-login-btn" class="btn btn-primary btn-block">Login</button>
           </div>
         </fieldset>
       </form>
@@ -39,7 +40,6 @@
 
   <!-- js file added -->
   <script src="js/script.js"></script>
-  <!-- <script src="js/create-user-script.js"></script> -->
 </body>
 
 </html>

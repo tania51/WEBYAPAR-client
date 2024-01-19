@@ -1,5 +1,70 @@
 body {
-    height: 100%;
+    height: 100vh;
     margin: 0;
     padding: 0;
 }
+
+.height-full {
+    height: 100vh;
+}
+.img-bg {
+    background-image: linear-gradient(#03013b, #03013b);
+}
+
+
+.height-without-btn {
+    height: 70vh;
+}
+
+.input-bg {
+    background-color: #EAECFF;
+    padding: 18px 22px;
+    border-radius: 10px;
+}
+
+.tab-btn {
+    background-color: #0500FF;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+}
+
+.tab-btn2 {
+    background-color: #fff;
+    color: #0500FF;
+    padding: 5px 20px;
+    border-radius: 5px;
+    border: 1px solid #0500FF;
+}
+
+.hide-coma {
+    display: none;
+}
+
+.img-area {
+    height: 229px;
+    width: 462px;
+    border: 2px dashed #CDCDCD;
+    background-color: #EEE;
+    border-radius: 5px;
+}
+
+.modal-header {
+    border-bottom: 0 !important;
+    margin-bottom: -36px;
+}
+.mobile-display {
+    display: flex;
+}
+
+
+
+
+/* for mobile device */
+@media (max-width: 767px) {
+    /* Styles specific to small devices go here */
+    .mobile-display {
+      display: none;
+    }
+  }

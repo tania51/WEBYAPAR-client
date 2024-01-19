@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap w/ Vite</title>
+  <script type="module" src="./js/main.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="d-flex height-full w-100 gap-5 justify-content-evenly">
+    <!-- logo area -->
+    <div class="w-50 px-5 d-flex border-end align-content-center flex-wrap">
+      <div>
+        <p class="text-center fs-1 fw-medium">Create User</p>
+        <form>
+          <fieldset>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">User ID</label>
+              <input type="text" id="user-id" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Password</label>
+              <input type="text" id="user-pass" class="form-control">
+            </div>
+            <div class="d-grid gap-2">
+              <button type="submit" id="user-create-btn" class="tab-btn">Submit</button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+
+    <!-- admin form area -->
+
+    <div class="w-50 px-5 d-flex align-content-center flex-wrap">
+      <div>
+        <p class="text-center fs-1 fw-medium">View User</p>
+        <form>
+          <fieldset>
+            <div id="input-form">
+              <div class="mb-3 input-bg">
+                <input type="text" id="user-id2" class="form-control" placeholder="User ID">
+              </div>
+              <div id="form-user-pass" class="mb-3 input-bg">
+                <input type="text" id="user-pass2" class="form-control" placeholder="Password">
+              </div>
+
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button type="submit" id="user-view-btn" class="me-md-2 tab-btn">View</button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const UserIdElement = document.getElementById('user-id');
+    const UserPassElement = document.getElementById('user-pass');
+    const UserIdElement2 = document.getElementById('user-id2');
+    const UserPassElement2 = document.getElementById('user-pass2');
+
+
+    document.getElementById('user-create-btn').addEventListener('click', function (event) {
+      event.preventDefault();
+
+      if (UserIdElement && UserPassElement) {
+        const UserIdValue = UserIdElement.value;
+        const UserPassValue = UserPassElement.value;
+        const role = 'user';
+
+        const userLoginData = {
+          userId: UserIdValue,
+          userPassword: UserPassValue,
+          role: role
+        };
+
+        console.log(userLoginData);
+        const userLoginId = userLoginData.userId;
+        const userLoginPass = userLoginData.userPassword;
+
+        UserIdElement2.value = userLoginId;
+        UserPassElement2.value = userLoginPass;
+
+        fetch('http://localhost:3000/user', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(userLoginData)
+        })
+          .then(res => res.json())
+          .then(data => console.log(data))
+
+        if (UserIdValue && UserPassValue ) {
+          window.location.href = 'user-login.html';
+        }
+
+      }
+
+
+
+
+    })
+
+
+    // view button
+    document.getElementById('user-view-btn').addEventListener('click', function (event) {
+      event.preventDefault();
+      window.location.href = 'view-all-user.html';
+    })
+
+  </script>
+
+  <!-- js file added -->
+  <!-- <script src="js/create-user-script.js"></script> -->
+</body>
+
+</html>

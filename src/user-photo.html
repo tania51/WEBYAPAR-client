@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap w/ Vite</title>
+    <script type="module" src="./js/main.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="height-full">
+
+    <!-- modal -->
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end pe-3 pt-3">
+        <!-- popup content starts -->
+
+        <!-- Button trigger modal -->
+        <button type="button" class="me-md-2 tab-btn2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            View
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header d-grid gap-2 d-md-flex justify-content-md-start pe-3 pt-3">
+                        <button type="button" class="tab-btn2" data-bs-dismiss="modal">Back</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex w-100 height-without-btn gap-5 justify-content-center align-content-center">
+                            <div class="d-flex w-100 justify-content-center align-content-center flex-wrap">
+                                <div>
+                                    <form>
+                                        <fieldset>
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Name</label>
+                                                <input type="text" id="user-name2" class="form-control">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Photo</label>
+                                                <br>
+                                                <div class="img-area">
+                                                    <img id="imagePreview2" style="max-width: 100%; max-height: 200px;">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 text-danger">
+                                                <p>Not Accepted by Admin</p>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- popup content ends -->
+
+    </div>
+
+
+
+    <div class="d-flex w-100 height-without-btn gap-5 justify-content-center align-content-center">
+        <div class="d-flex w-100 justify-content-center align-content-center flex-wrap">
+            <div>
+                <form>
+                    <fieldset>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Name</label>
+                            <input type="text" id="user-name" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Photo</label>
+                            <br>
+                            <div class="img-area">
+                                <img id="imagePreview" style="max-width: 100%; max-height: 200px;">
+                            </div>
+                            <br>
+                            <input class="file-hidden" type="file" id="imageInput" placeholder="some"
+                                onchange="previewImage()">
+
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="file" id="user-update-btn" class="tab-btn">Update</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+        const userData = localStorage.getItem('user-info');
+        const parseUserData = JSON.parse(userData);
+        console.log(parseUserData);
+
+        const userNameElement = document.getElementById('user-name');
+        const userNameElement2 = document.getElementById('user-name2');
+        const displayImage2 = document.getElementById('imagePreview2');
+
+
+
+
+
+
+        function previewImage() {
+            var displayImage = document.getElementById('imagePreview');
+            var imgInput = document.getElementById('imageInput');
+            var file = imgInput.files[0];
+
+            if (file) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    const userImage = (displayImage.src = e.target.result);
+                    displayImage2.src = e.target.result;
+                    console.log('image', userImage);
+                    if (userNameElement) {
+                        const userNameValue = userNameElement.value;
+                        console.log('value', userNameValue);
+                        userNameElement2.value = userNameValue;
+
+                        parseUserData.userName = userNameValue;
+                        parseUserData.userImage = userImage;
+                        console.log('update data', parseUserData);
+
+                        document.getElementById('user-update-btn').addEventListener('click', function (event) {
+                            event.preventDefault();
+                            console.log('update button clicked');
+
+                            fetch(`http://localhost:3000/updated-user-data`, {
+                            method: 'PUT',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(parseUserData)
+                        })
+                            .then(res => res.json())
+                            .then(data => console.log('new data', data))
+                        })
+
+                        
+
+                    }
+                };
+
+                reader.readAsDataURL(file);
+            } else {
+                displayImage.src = '';
+            }
+
+            // if (userNameElement) {
+            //     const userNameValue = userNameElement.value;
+            //     console.log('value', userNameValue);
+            //     userNameElement2.value = userNameValue;
+
+            // }
+            localStorage.removeItem('user-info')
+
+
+        }
+
+    </script>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
