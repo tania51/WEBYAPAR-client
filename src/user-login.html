@@ -4,21 +4,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bootstrap w/ Vite</title>
+  <title>User Login | WEBYAPAR | IT Platform</title>
   <script type="module" src="./js/main.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <div class="mobile-display height-full d-flex w-100 gap-5">
+  <div class="mobile-display height-full">
     
     <!-- logo area -->
-    <div class="w-50 img-bg d-flex align-content-center flex-wrap">
+    <div class="width-half img-bg d-flex align-content-center flex-wrap">
       <img src="./assets/logo.png" class="img-fluid" alt="Logo">
     </div>
 
     <!-- user form area -->
-    <div class="w-50 px-5 d-flex align-content-center flex-wrap">
+    <div class="width-half flex-d align-content-center flex-wrap">
       <div>
         <p class="text-center fs-1 fw-medium">User Login</p>
       <form>
@@ -30,7 +30,7 @@
             <input type="text" id="user-pass" class="form-control" placeholder="Password">
           </div>
           <div class="d-grid gap-2">
-            <button type="submit" id="admin-login-btn" class="btn btn-primary btn-block">Login</button>
+            <button type="submit" id="user-login-btn" class="btn btn-primary btn-block">Login</button>
           </div>
         </fieldset>
       </form>
@@ -38,8 +38,45 @@
     </div>
   </div>
 
+  <script>
+
+const userIdElement = document.getElementById('user-id');
+const userPassElement = document.getElementById('user-pass');
+
+
+document.getElementById('user-login-btn').addEventListener('click', function (event) {
+    event.preventDefault();
+
+
+    if (userIdElement && userPassElement) {
+        const userId = userIdElement.value;
+        const userPassValue = userPassElement.value;
+        
+        fetch('https://webyapar-server.vercel.app/admin-info')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+
+                const adminFilter = data.find(aAdmin => aAdmin.userId === userId && aAdmin.userPassword === userPassValue && aAdmin.role === 'user')
+                console.log(adminFilter);
+
+                if(adminFilter) {
+                    localStorage.setItem('user-info', JSON.stringify(adminFilter))
+                    window.location.href = 'user-photo.html';
+                }
+            })
+
+        console.log(adminLoginData);
+
+    }
+
+    
+})
+
+  </script>
+
   <!-- js file added -->
-  <script src="js/script.js"></script>
+  <!-- <script src="js/script.js"></script> -->
 </body>
 
 </html>

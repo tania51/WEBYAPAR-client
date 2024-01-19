@@ -11,7 +11,7 @@ document.getElementById('admin-login-btn2').addEventListener('click', function (
         const adminUserId = adminUserIdElement.value;
         const adminUserPassValue = adminUserPassElement.value;
         
-        fetch('http://localhost:3000/admin-info')
+        fetch('https://webyapar-server.vercel.app/admin-info')
             .then(res => res.json())
             .then(data => {
                 console.log('admin info', adminUserId, adminUserPassValue, 'data', data);

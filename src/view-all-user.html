@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap w/ Vite</title>
+    <title>View All User | WEBYAPAR | IT Platform</title>
     <script type="module" src="./js/main.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,7 +12,7 @@
 <body>
     <script>
 
-        const some = fetch('http://localhost:3000/admin-info')
+        const some = fetch('https://webyapar-server.vercel.app/admin-info')
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -25,13 +25,13 @@
 
                 const userSingleData = filterdWithoutAdmin.map(singleUserInfo => `<tr>
                 <td>${singleUserInfo.userId}</td>
-                <td>${singleUserInfo.role}</td>
+                <td>${singleUserInfo.userName ? singleUserInfo.userName : ''}</td>
                 <td>
-                  <img src=${singleUserInfo.userImage} style="max-width: 1050; max-height: 50px;" alt=""></td>
+                  <img src=${singleUserInfo.userImage ? singleUserInfo.userImage : './assets/user.png'} style="max-width: 1050; max-height: 50px;" alt="">
+                  </td>
                 <td>
-                <td>
-                    <button id="done-btn" onclick="${handleDoneClick(singleUserInfo._id)}"><span id="get-id">${singleUserInfo._id}</span>Done</button>
-
+                    <button id="done-btn" class="tab-btn" onclick="${handleDoneClick(singleUserInfo._id)}">Done</button>
+                    <button id="done-btn" class="tab-btn2" onclick="${handleDoneClick(singleUserInfo._id)}">Delete</button>
                     </td>
               </tr><span class='hide-coma'>,<span>`
                 )

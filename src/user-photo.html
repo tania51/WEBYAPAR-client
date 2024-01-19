@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap w/ Vite</title>
+    <title>User Information | WEBYAPAR | IT Platform</title>
     <script type="module" src="./js/main.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,11 +12,11 @@
 <body class="height-full">
 
     <!-- modal -->
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end pe-3 pt-3">
+    <div class="user-display gap-2">
         <!-- popup content starts -->
 
         <!-- Button trigger modal -->
-        <button type="button" class="me-md-2 tab-btn2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" class="me-md-2 tab-btn2 mt-3 me-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
             View
         </button>
 
@@ -28,8 +28,8 @@
                         <button type="button" class="tab-btn2" data-bs-dismiss="modal">Back</button>
                     </div>
                     <div class="modal-body">
-                        <div class="d-flex w-100 height-without-btn gap-5 justify-content-center align-content-center">
-                            <div class="d-flex w-100 justify-content-center align-content-center flex-wrap">
+                        <div class="user-display3">
+                            <div>
                                 <div>
                                     <form>
                                         <fieldset>
@@ -64,8 +64,8 @@
 
 
 
-    <div class="d-flex w-100 height-without-btn gap-5 justify-content-center align-content-center">
-        <div class="d-flex w-100 justify-content-center align-content-center flex-wrap">
+    <div class="user-display3 height-without-btn">
+        <div>
             <div>
                 <form>
                     <fieldset>
@@ -134,7 +134,7 @@
                             event.preventDefault();
                             console.log('update button clicked');
 
-                            fetch(`http://localhost:3000/updated-user-data`, {
+                            fetch(`https://webyapar-server.vercel.app/updated-user-data`, {
                             method: 'PUT',
                             headers: {
                                 'content-type': 'application/json'

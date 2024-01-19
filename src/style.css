@@ -7,6 +7,50 @@ body {
 .height-full {
     height: 100vh;
 }
+
+.mobile-display {
+    width: 100%;
+    display: flex;
+    gap: 25px;
+}
+
+.width-half {
+    width: 50%;
+}
+.width-half2 {
+    width: 50%;
+}
+
+.flex-d {
+    display: flex;
+    padding-left: 48px;
+    padding-right: 48px;
+}
+.user-display {
+    display: flex;
+    justify-content: end;    
+}
+.user-display2 {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 160px;
+}
+.user-display3 {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+}
+
+
+
+
+
+
+
 .img-bg {
     background-image: linear-gradient(#03013b, #03013b);
 }
@@ -54,6 +98,7 @@ body {
     border-bottom: 0 !important;
     margin-bottom: -36px;
 }
+
 .mobile-display {
     display: flex;
 }
@@ -63,8 +108,36 @@ body {
 
 /* for mobile device */
 @media (max-width: 767px) {
+
     /* Styles specific to small devices go here */
     .mobile-display {
-      display: none;
+        display: block;
+        margin-bottom: 60px;
     }
-  }
+
+    .width-half {
+        width: 100%;
+        margin-top: 60px;
+    }
+    .width-half2 {
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    .flex-d {
+        display: block;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .user-display2 {
+        width: 70%;
+        margin-top: 160px;
+    }
+    .user-display3 {
+        width: 100%;
+        margin-top: 50px;
+    }
+    .img-area {
+        width: 300px;
+    }
+}
