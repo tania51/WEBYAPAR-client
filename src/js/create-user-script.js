@@ -19,7 +19,7 @@ document.getElementById('admin-login-btn2').addEventListener('click', function (
                 const adminFilter = data.find(aAdmin => aAdmin.adminId === adminUserId && aAdmin.adminPassword === adminUserPassValue && aAdmin.role === 'admin')
                 console.log('filter', adminFilter);
                 if(adminFilter) {
-                    window.location.href = 'create-user.html';
+                    window.location.href = 'https://webyapar-ff81b.web.app/create-user.html';
                 }
             })
 
